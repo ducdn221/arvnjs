@@ -49,8 +49,8 @@ userController.updateUser = async function (req, res) {
       const fileType = req.body.newAvatar.fileType;
       const err = await uploadService.uploadBase64(file, fileType);
       if (err) {
-        return res.status(500).json({ error: err });
-    }
+				return res.status(500).json({ error: err });
+			}
     }
 
     // { new: true } an option that asks mongoose to return the updated version of the document instead of the pre-updated one

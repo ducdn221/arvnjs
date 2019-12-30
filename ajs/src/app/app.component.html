@@ -1,0 +1,13 @@
+<mat-progress-bar
+  *ngIf="visible"
+  class="example-margin"
+  [color]="color"
+  [mode]="mode"
+  [value]="value"
+  [bufferValue]="bufferValue">
+</mat-progress-bar>
+
+<app-header *ngIf="authService.isAuthenticated()"></app-header>
+<div [class.actived-header]="authService.isAuthenticated()" class="content">
+  <router-outlet></router-outlet>
+</div>
