@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed">
+  <a class="navbar-brand" routerLink="/agu-shop">AGU</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/agu-shop/house" routerLinkActive="active">House</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/agu-shop/clothes" routerLinkActive="active">Clothes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/agu-shop/book" routerLinkActive="active">Book</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="navbar-nav">
+      <li class="nav-item nav-cart" (click)="router.navigate(['/agu-shop/shopping-cart'])">
+        <app-header-shopping-cart></app-header-shopping-cart>
+        <!-- <a class="nav-link" routerLink="/agu-shop/shopping-cart" routerLinkActive="active">Shopping Cart</a> -->
+      </li>
+      <ng-template #anonymousUser>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+      </ng-template>
+      <li *ngIf="authService.isLoggedIn(); else anonymousUser" ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ user['displayName'] }}
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/agu-shop/my-orders">My Oders</a>
+          <a class="dropdown-item" routerLink="/agu-shop/my-favorites">My Favorites</a>
+          <a class="dropdown-item" (click)="logout()">Log Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -38,3 +38,19 @@
 > npm install --save @auth0/angular-jwt
 ###### read JWT payload to get roles & permissions
 > npm install --save jwt-decode
+
+### The official library for Firebase and Angular
+###### https://github.com/angular/angularfire/blob/HEAD/docs/install-and-setup.md
+> npm install firebase @angular/fire --save
+
+### bootstrap
+> npm i bootstrap
+###### ng-bootstrap -> This repository contains a set of native Angular directives based on Bootstrap's markup and CSS. As a result no dependency on jQuery or Bootstrap's JavaScript is required.
+> npm install --save @ng-bootstrap/ng-bootstrap
+
+### Deployment with firebase
+> npm i -g firebase-tools
+> npm i firebase --save
+
+### Angular2 custom validation, inspired by jQuery validation.
+> npm i ng2-validation

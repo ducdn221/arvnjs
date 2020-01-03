@@ -1,0 +1,27 @@
+.nav-cart {
+  padding: 0 5px;
+  position: relative;
+  width: 75px;
+  &__icon {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 60px;
+    height: 40px;
+    background-image: url("/assets/images/base/nav/shopping-cart.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &__label {
+    position: absolute;
+    left: 42px;
+    top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  &__count {
+    position: absolute;
+    left: 25px;
+  }
+}

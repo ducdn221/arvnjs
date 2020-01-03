@@ -4,3 +4,11 @@ body {
   line-height: 1.7;
   color: $text-dark;
 }
+
+.form-control, .btn, .input-group-text {
+  font-size: $default-font-size;
+}
+
+h5 {
+  font-size: 3.5rem;
+}

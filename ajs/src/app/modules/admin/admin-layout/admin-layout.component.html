@@ -1,0 +1,6 @@
+<app-header *ngIf="authService.isLoggedIn() && authService.isAdmin()"></app-header>
+<div [class.actived-header]="authService.isLoggedIn()" class="content">
+  <div class="u-padding-top-medium">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -13,14 +13,12 @@ import {
   MatOptionModule,
   MatSelectModule,
 } from '@angular/material';
-import { JwtModule } from '@auth0/angular-jwt';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthService } from './auth.service';
-import { CallbackComponent } from './components/callback/callback.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { CallbackComponent } from './callback/callback.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const MAT_MODULES = [
   MatCardModule,

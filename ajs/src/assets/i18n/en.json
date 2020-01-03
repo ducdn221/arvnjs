@@ -15,6 +15,8 @@
     "passwordIsRequired": "Password is required!",
     "incorrectUserNameOrPassword": "Incorrect username or password!",
     "rememberMe": "Remember me",
-    "forgotPassword": "Forgot password?"
+    "forgotPassword": "Forgot password?",
+    "loginWithFacebook": "Login with Facebook",
+    "loginWithGoogle": "Login with Google"
   }
 }

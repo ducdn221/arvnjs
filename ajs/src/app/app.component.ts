@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 
 import { environment as configs } from '../environments/environment';
 import { I18nService } from './core/services/i18n.service';
+import { UserService } from './core/http/user.service';
 import { AuthService } from './modules/authentication/auth.service';
 
 @Component({
@@ -22,8 +23,9 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private i18nService: I18nService,
-    public authService: AuthService
-  ) { }
+    public authService: AuthService,
+    private userService: UserService
+  ) {  }
 
   ngOnInit(): void {
     this.handleLoadingBar();

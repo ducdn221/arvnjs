@@ -1,9 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as firebase from 'firebase/app';
+import * as jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
-import { BehaviorSubject, of, Subscription, timer } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription, timer } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { environment as configs } from '../../../environments/environment';
@@ -14,18 +17,23 @@ import { environment as configs } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private authSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
+  private authSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   public auth$ = this.authSubject.asObservable();
-  returnUrl = '/home';
+  returnUrl = '';
   refreshSubscription: Subscription;
+  user$: Observable<firebase.User>;
 
   constructor(
     public router: Router,
     private http: HttpClient,
-    public jwtHelper: JwtHelperService
-  ) { }
+    public jwtHelper: JwtHelperService,
+    private afAuth: AngularFireAuth,
+    private route: ActivatedRoute
+  ) {
+    this.user$ = afAuth.authState;
+  }
 
-  isAuthenticated(): boolean {
+  isLoggedIn(): boolean {
     return !this.jwtHelper.isTokenExpired();
   }
 
@@ -51,13 +59,13 @@ export class AuthService {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expiresAt', expiresAt);
-    localStorage.setItem('authUser', JSON.stringify(authResult.user));
+    localStorage.setItem('user', JSON.stringify(jwt_decode(authResult.token).user));
 
     this.scheduleRenewal();
   }
 
   public scheduleRenewal(): void {
-    if (!this.isAuthenticated()) { return; }
+    if (!this.isLoggedIn()) { return; }
     this.unscheduleRenewal();
 
     const expiresAt = JSON.parse(localStorage.getItem('expiresAt'));
@@ -95,10 +103,11 @@ export class AuthService {
   }
 
   public navigateAfterLogin(): void {
-    console.log('navigateAfterLogin::', this.returnUrl);
-
+    if (!this.returnUrl) {
+      this.returnUrl = this.isAdmin() ? '/admin' : '/agu-shop';
+    }
     this.router.navigate([this.returnUrl]).then(() => {
-      this.returnUrl = '/home';
+      this.returnUrl = '/agu-shop';
     });
   }
 
@@ -119,6 +128,28 @@ export class AuthService {
   removeSession() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiresAt');
-    localStorage.removeItem('authUser');
+    localStorage.removeItem('user');
+  }
+
+  public getUserRoles(): string {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'));
+      return user.hasOwnProperty('roles') ? user.roles : '';
+    } catch (Error) {
+      return null;
+    }
+  }
+
+  public isAdmin(): boolean {
+    const roles = this.getUserRoles();
+    return roles && roles.includes('admin');
+  }
+
+  loginWithGoogle() {
+    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+  }
+
+  logoutFromGoogle() {
+    this.afAuth.auth.signOut();
   }
 }

@@ -1,0 +1,18 @@
+.dropdown-toggle, .dropdown-item, .nav-cart {
+  cursor: pointer;
+}
+
+nav, nav > *, nav a {
+  background-color: #232f3e!important;
+  color: #f1f3f5!important;
+}
+
+.dropdown-menu {
+  background-color: #232f3e!important;
+}
+
+.navbar.position-fixed {
+  position: fixed;
+  width: 100%;
+  z-index: 9990;
+}

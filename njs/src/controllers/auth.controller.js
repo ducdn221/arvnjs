@@ -26,8 +26,12 @@ authController.login = function (req, res) {
 				if (result) {
 					const token = jwt.sign(
 						{
-							email: user.email,
-							_id: user._id
+							user: {
+								_id: user._id,
+								email: user.email,
+								displayName: user.user_name,
+								roles: user.roles
+							}
 						},
 						configs.secret.SESSION_SECRET,
 						{

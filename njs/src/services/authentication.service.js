@@ -26,7 +26,7 @@ authService.requiresLogin = function (req, res, next) {
 			if (err) {
 				return res.status(500).json({ message: 'Failed to authenticate token!' });
 			} else {
-				const user = await User.findOne({ _id: decoded._id, 'tokens.token': token });
+				const user = await User.findOne({ _id: decoded.user._id, 'tokens.token': token });
 				if (!user || checkExpire(decoded.exp)) {
 					return res.status(403).json({ message: 'Access Denied' });
 				}

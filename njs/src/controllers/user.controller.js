@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const uploadService = require('../services/upload.service');
 
 const userController = {};
-const fields = '_id user_name email first_name last_name birthday gender marital_status address mobile avatar status created_date created_by updated_date updated_by';
+const fields = '_id user_name email first_name last_name birthday gender marital_status address mobile avatar status created_date created_by updated_date updated_by roles';
 
 userController.getUsers = function (req, res) {
     User.find({}, fields, function (err, result) {
@@ -37,7 +37,9 @@ userController.getUserById = function (req, res) {
         if (err) {
             return res.status(500).json({ error: err });
         }
-        result.avatar = result.avatar ? 'http://localhost:9999/' + result.avatar : '';
+        if (result && result.avatar) {
+            result.avatar = 'http://localhost:9999/' + result.avatar;
+        }
         res.status(200).json(result);
     });
 };

@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-card__logo">
+      <img src="/assets/images/pages/login/anonymous.png" alt="logo" />
+    </div>
+    <form class="login-card__form">
+      <mat-form-field>
+        <mat-label>{{ "BASE.languages" | translate }}</mat-label>
+        <mat-select #languages (selectionChange)="i18nService.changeLang(languages.value)">
+          <mat-option value="vi">{{ "I18N.vietnamese" | translate }}</mat-option>
+          <mat-option value="en">{{ "I18N.english" | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{ 'LOGIN.userName' | translate }}" [formControl]="userName" required />
+        <mat-error *ngIf="userName.invalid">
+          {{ "LOGIN.userNameIsRequired" | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="u-margin-bottom-small">
+        <input matInput type="password" placeholder="{{ 'LOGIN.password' | translate }}" [formControl]="password"
+          required autocomplete="false" />
+        <mat-error *ngIf="password.invalid">
+          {{ "LOGIN.passwordIsRequired" | translate }}
+        </mat-error>
+      </mat-form-field>
+      <div class="actions">
+        <div class="additions">
+          <mat-checkbox #rememberMe color="primary">{{ 'LOGIN.rememberMe' | translate }}</mat-checkbox>
+          <a class="label-link" href="/password_reset">{{ 'LOGIN.forgotPassword' | translate }}</a>
+        </div>
+        <div class="login">
+          <button mat-raised-button color="primary" (click)="login()">
+            {{ "LOGIN.login" | translate }}
+          </button>
+        </div>
+      </div>
+      <hr>
+      <div class="sso-login">
+        <button type="button" mat-raised-button class="loginBtn loginBtn--facebook">
+          {{ "LOGIN.loginWithFacebook" | translate }}
+        </button>
+        <button type="button" mat-raised-button class="loginBtn loginBtn--google" (click)="loginWithGoogle()">
+          {{ "LOGIN.loginWithGoogle" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

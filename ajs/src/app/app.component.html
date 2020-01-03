@@ -6,8 +6,4 @@
   [value]="value"
   [bufferValue]="bufferValue">
 </mat-progress-bar>
-
-<app-header *ngIf="authService.isAuthenticated()"></app-header>
-<div [class.actived-header]="authService.isAuthenticated()" class="content">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>

@@ -15,6 +15,8 @@
     "passwordIsRequired": "Mật khẩu không được trống!",
     "incorrectUserNameOrPassword": "Tên đăng nhập hoặc mật khẩu không đúng!",
     "rememberMe": "Nhớ tên đăng nhập",
-    "forgotPassword": "Quên mật khẩu?"
+    "forgotPassword": "Quên mật khẩu?",
+    "loginWithFacebook": "Đăng nhập bằng Facebook",
+    "loginWithGoogle": "Đăng nhập bằng Google"
   }
 }
