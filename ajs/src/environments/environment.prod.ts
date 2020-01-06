@@ -13,7 +13,7 @@ export const environment = {
     redirectUri: 'http://localhost:4200/login/callback',
     scope: 'openid profile email'
   },
-  googleAPIKey: 'YOUR_GOOGLE_API_KEY', // example AIzaSyBNg_O4VHVbCB9tUs4w5wX90yuvWyOpAA4
+  googleAPIKey: 'YOUR_GOOGLE_API_KEY',
   defaultLang: 'en',
   firebaseConfig: {
     apiKey: 'AIzaSyCq9y-_TlsclEoGDkR8ZP7KhJ6k2-_hiXU',
