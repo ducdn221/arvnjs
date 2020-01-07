@@ -3,6 +3,7 @@ import { CategoryService } from '../../../../core/http/category.service';
 import { ProductService } from '../../../../core/http/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { ShoppingCartService } from 'src/app/core/http/shopping-cart.service';
 
 @Component({
   selector: 'app-product-form',

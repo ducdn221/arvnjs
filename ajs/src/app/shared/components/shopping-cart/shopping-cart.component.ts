@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  @Input() cartCount: number;
+  @Input() shoppingCartItemCount: number;
 
   constructor() { }
 

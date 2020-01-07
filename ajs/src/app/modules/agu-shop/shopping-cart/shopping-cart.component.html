@@ -1,1 +1,8 @@
 <p>shopping-cart works!</p>
+
+<ng-container *ngIf="cart$ | async as cart">
+  <p>
+    You have {{ cart['items'] | json }} items in your shpping cart.
+  </p>
+</ng-container>
+
